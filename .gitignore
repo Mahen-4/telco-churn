@@ -16,4 +16,7 @@ __pycache__/
 data/raw/
 data/interim/
 data/processed/
-models/
+models/*
+!models/pipeline.joblib
+!models/metadata.json
+!models/reference_predictions.json

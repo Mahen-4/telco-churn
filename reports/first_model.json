@@ -1,0 +1,36 @@
+{
+  "positive_class": "Churn = Yes (1)",
+  "matrix_layout": "rows=true [No, Yes], cols=predicted [No, Yes]",
+  "features": [
+    "tenure",
+    "MonthlyCharges"
+  ],
+  "results": {
+    "baseline_most_frequent": {
+      "accuracy": 0.7345635202271115,
+      "confusion_matrix": [
+        [
+          1035,
+          0
+        ],
+        [
+          374,
+          0
+        ]
+      ]
+    },
+    "logistic_2_features": {
+      "accuracy": 0.7828246983676366,
+      "confusion_matrix": [
+        [
+          950,
+          85
+        ],
+        [
+          221,
+          153
+        ]
+      ]
+    }
+  }
+}
