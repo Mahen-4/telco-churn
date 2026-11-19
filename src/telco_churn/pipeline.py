@@ -17,6 +17,9 @@ def parse_features(df: pd.DataFrame) -> pd.DataFrame:
     - Un texte non vide et non numérique lève une ValueError
       (errors="raise"), il n'est pas converti en NaN en silence.
     """
+    missing = [c for c in ALL_FEATURES if c not in df.columns]
+    if missing:
+        raise KeyError(f"Missing required features: {missing}")
     out = df[ALL_FEATURES].copy()
 
     total = out["TotalCharges"].astype("string").str.strip()
