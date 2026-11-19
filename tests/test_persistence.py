@@ -12,7 +12,7 @@ def test_reload_preserves_predictions(tmp_path, fitted_pipeline, sample_features
     before_class = fitted_pipeline.predict(X)
 
     joblib.dump(fitted_pipeline, artifact)
-    loaded = joblib.load(artifact)          # artefact de confiance : le nôtre
+    loaded = joblib.load(artifact)  # artefact de confiance : le nôtre
 
     assert np.array_equal(before_class, loaded.predict(X))
     assert np.allclose(before_proba, loaded.predict_proba(X), atol=1e-12)

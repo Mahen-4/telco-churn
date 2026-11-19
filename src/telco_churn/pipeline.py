@@ -33,19 +33,27 @@ def parse_features(df: pd.DataFrame) -> pd.DataFrame:
 
 def build_pipeline(classifier) -> Pipeline:
     """Construit un Pipeline NON entraîné (ne lit aucune donnée, n'appelle pas fit)."""
-    numeric_transformer = Pipeline([
-        ("imputer", SimpleImputer(strategy="median")),
-        ("scaler", StandardScaler()),
-    ])
-    categorical_transformer = Pipeline([
-        ("imputer", SimpleImputer(strategy="most_frequent")),
-        ("encoder", OneHotEncoder(handle_unknown="ignore", sparse_output=False)),
-    ])
-    preprocessor = ColumnTransformer([
-        ("num", numeric_transformer, NUMERIC_FEATURES),
-        ("cat", categorical_transformer, CATEGORICAL_FEATURES),
-    ])
-    return Pipeline([
-        ("preprocessor", preprocessor),
-        ("classifier", classifier),
-    ])
+    numeric_transformer = Pipeline(
+        [
+            ("imputer", SimpleImputer(strategy="median")),
+            ("scaler", StandardScaler()),
+        ]
+    )
+    categorical_transformer = Pipeline(
+        [
+            ("imputer", SimpleImputer(strategy="most_frequent")),
+            ("encoder", OneHotEncoder(handle_unknown="ignore", sparse_output=False)),
+        ]
+    )
+    preprocessor = ColumnTransformer(
+        [
+            ("num", numeric_transformer, NUMERIC_FEATURES),
+            ("cat", categorical_transformer, CATEGORICAL_FEATURES),
+        ]
+    )
+    return Pipeline(
+        [
+            ("preprocessor", preprocessor),
+            ("classifier", classifier),
+        ]
+    )

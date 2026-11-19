@@ -1,0 +1,19 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.5   # remplace par TA version de ruff
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+        types_or: [python, pyi]
+        files: ^(src|scripts|tests)/
+      - id: ruff-format
+        types_or: [python, pyi]
+        files: ^(src|scripts|tests)/
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+        files: ^(src|scripts|tests)/
+      - id: end-of-file-fixer
+        files: ^(src|scripts|tests)/

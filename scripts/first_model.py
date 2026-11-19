@@ -1,11 +1,11 @@
 import json
 from pathlib import Path
 
+import pandas as pd
 from sklearn.dummy import DummyClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix
 
-import pandas as pd
 from telco_churn.splits import TARGET, make_splits, save_allocation
 
 SOURCE = Path("data/raw/telco.csv")
@@ -25,7 +25,7 @@ models = {
     "logistic_2_features": LogisticRegression(max_iter=1000),
 }
 for name, model in models.items():
-    model.fit(X_train, y_train)          # baseline aussi entraînée sur le train
+    model.fit(X_train, y_train)  # baseline aussi entraînée sur le train
     pred = model.predict(X_valid)
     results[name] = {
         "accuracy": float(accuracy_score(y_valid, pred)),

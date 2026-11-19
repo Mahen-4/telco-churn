@@ -11,9 +11,9 @@ def test_missing_required_feature_is_rejected(sample_features):
 
 
 def test_supported_variation_is_predicted(fitted_pipeline, sample_features):
-    batch = sample_features.copy()          # copie : on ne modifie pas la fixture
-    batch.loc[0, "tenure"] = np.nan         # numérique manquant -> imputé
-    batch.loc[1, "TotalCharges"] = " "      # blanc -> manquant
+    batch = sample_features.copy()  # copie : on ne modifie pas la fixture
+    batch.loc[0, "tenure"] = np.nan  # numérique manquant -> imputé
+    batch.loc[1, "TotalCharges"] = " "  # blanc -> manquant
     batch.loc[2, "PaymentMethod"] = "Crypto"  # catégorie jamais vue à l'entraînement
 
     assert "Crypto" not in sample_features["PaymentMethod"].unique()  # vraiment absente

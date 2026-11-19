@@ -1,9 +1,10 @@
 import hashlib
 import importlib.metadata
+import io
 import json
 import sys
 from pathlib import Path
-import io
+
 import pandas as pd
 
 
@@ -44,11 +45,14 @@ def write_report(source: Path, output: Path) -> None:
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(report, indent=2), encoding="utf-8")
 
+
 def read_telco(source: Path) -> pd.DataFrame:
     """Lit le CSV, qu'il ait ou non ses lignes entourées de guillemets."""
     lines = source.read_text(encoding="utf-8-sig").splitlines()
     lines = [
-        line[1:-1] if len(line) > 1 and line.startswith('"') and line.endswith('"') else line
+        line[1:-1]
+        if len(line) > 1 and line.startswith('"') and line.endswith('"')
+        else line
         for line in lines
     ]
     return pd.read_csv(io.StringIO("\n".join(lines)))

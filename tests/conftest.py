@@ -15,14 +15,18 @@ def sample_features() -> pd.DataFrame:
     payments = ["Electronic check", "Mailed check", "Bank transfer (automatic)"]
     tenure = np.arange(1, n + 1) * 3.0
     monthly = 20.0 + np.arange(n) * 4.0
-    return pd.DataFrame({
-        "tenure": tenure,
-        "MonthlyCharges": monthly,
-        "TotalCharges": (tenure * monthly).round(2).astype(str),  # texte, comme dans le CSV
-        "Contract": [contracts[i % 3] for i in range(n)],
-        "InternetService": [internet[i % 3] for i in range(n)],
-        "PaymentMethod": [payments[i % 3] for i in range(n)],
-    })
+    return pd.DataFrame(
+        {
+            "tenure": tenure,
+            "MonthlyCharges": monthly,
+            "TotalCharges": (tenure * monthly)
+            .round(2)
+            .astype(str),  # texte, comme dans le CSV
+            "Contract": [contracts[i % 3] for i in range(n)],
+            "InternetService": [internet[i % 3] for i in range(n)],
+            "PaymentMethod": [payments[i % 3] for i in range(n)],
+        }
+    )
 
 
 @pytest.fixture
