@@ -20,3 +20,7 @@ models/*
 !models/pipeline.joblib
 !models/metadata.json
 !models/reference_predictions.json
+mlflow.db
+mlflow.db-*
+mlartifacts/
+mlruns/
